@@ -1,0 +1,190 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+</head>
+<script>
+    function Submit() {
+        const firstName = document.getElementById("first-name").value;
+        const lastName = document.getElementById("last-name").value;
+        const dob = document.getElementById("dob").value;
+        const country = document.getElementById("country").value;
+        const profession = document.getElementById("profession").value;
+        const email = document.getElementById("email").value;
+        const mobile = document.getElementById("mobile").value;
+        let gender = "";
+
+        let male = document.getElementById("male");
+        let female = document.getElementById("male");
+        if (male.checked) {
+            gender = "Male"
+        } else {
+            gender = "Female"
+        }
+
+        if (firstName && lastName && dob && country && profession && email && mobile && gender) {
+            document.getElementById("survey-form").style.display = "none";
+            document.getElementById("user-Details").style.display = "block";
+            document.getElementById("showFirstName").textContent = firstName;
+            document.getElementById("showLastName").textContent = lastName;
+            document.getElementById("showDob").textContent = dob;
+            document.getElementById("showCountry").textContent = country;
+            document.getElementById("showGender").textContent = gender;
+            document.getElementById("showProfession").textContent = profession;
+            document.getElementById("showEmail").textContent = email;
+            document.getElementById("showMobile").textContent = mobile;
+        } else {
+            alert("All Fields required");
+        }
+    }
+
+    function ResetForm() {
+        document.getElementById("survey-form").reset();
+    }
+
+    function CloseDetails() {
+        ResetForm();
+        document.getElementById("user-Details").style.display = "none";
+        document.getElementById("survey-form").style.display = "block";
+    }
+
+</script>
+
+<body>
+    <div class="container">
+        <form id="survey-form">
+            <h2>Survey Form</h2>
+            <div class="form-group">
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" required>
+            </div>
+
+            <div class="form-group">
+                <label for="country">Country:</label>
+                <select id="country" required>
+                    <option value="India">India</option>
+                    <option value="USA">USA</option>
+                    <option value="Palestinian">Palestinian</option>
+                    <option value="Israeli">Israeli</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Gender:</label>
+                <input type="checkbox" id="male" class="gender">
+                <label for="male" class="gender-label">Male</label>
+                <input type="checkbox" id="female" class="gender">
+                <label for="female" class="gender-label">Female</label>
+            </div>
+
+            <div class="form-group">
+                <label for="profession">Profession:</label>
+                <input type="text" id="profession" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile Number:</label>
+                <input type="tel" id="mobile" required>
+            </div>
+
+            <div class="form-group Action-button">
+                <button type="button" id="submit-button" onclick="Submit()">Submit</button>
+                <button type="button" id="reset-button" onclick="ResetForm()">Reset</button>
+            </div>
+        </form>
+        <div id="user-Details" style="display: none">
+            <h2>Form Submitted Successfully...!</h2>
+            <p><strong>First Name:</strong> <span id="showFirstName"></span></p>
+            <p><strong>Last Name:</strong> <span id="showLastName"></span></p>
+            <p><strong>Date of Birth:</strong> <span id="showDob"></span></p>
+            <p><strong>Country:</strong> <span id="showCountry"></span></p>
+            <p><strong>Gender:</strong> <span id="showGender"></span></p>
+            <p><strong>Profession:</strong> <span id="showProfession"></span></p>
+            <p><strong>Email:</strong> <span id="showEmail"></span></p>
+            <p><strong>Mobile Number:</strong> <span id="showMobile"></span></p>
+            <class class="Action-button">
+                <button id="close-pop" onclick="CloseDetails()">Close</button>
+            </class>
+        </div>
+    </div>
+
+
+
+</body>
+
+<style>
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    #survey-form,
+    #user-Details {
+        padding: 10px 60px;
+        border: solid 1px red;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .gender-label {
+        display: inline;
+        margin-right: 10px;
+    }
+
+    #submit-button,
+    #close-pop {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        margin: 0px 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    #reset-button {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        margin: 0px 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    .Action-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+</html>

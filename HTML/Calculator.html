@@ -1,0 +1,158 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+
+<script>
+    let equation = "";
+    let FirstValue = 0;
+    let SecondValue = 0;
+    let Result = "";
+    let opr = 0;
+
+    function display(val) {
+        if (Result === "") {
+            document.getElementById("result").value += val
+            document.getElementById("equation").value += val
+        } else {
+            reset();
+        }
+    }
+
+    function operation(val) {
+        opr = val;
+        FirstValue = document.getElementById("result").value;
+        document.getElementById("equation").value += val
+        document.getElementById("result").value = "";
+    }
+    function solve() {
+        SecondValue = document.getElementById("result").value;
+        if (FirstValue && SecondValue) {
+            let x = parseFloat(FirstValue);
+            let y = parseFloat(SecondValue);
+            switch (opr) {
+                case "+":
+                    Result = x + y;
+                    break;
+                case "-":
+                    Result = x - y;
+                    break;
+                case "*":
+                    Result = x * y;
+                    break;
+                case "/":
+                    Result = x / y;
+                    break;
+                default:
+                    Result = "Bad Value";
+            }
+        }
+        document.getElementById("result").value = Result;
+    }
+
+
+    function reset() {
+        Result = "";
+        equation = "";
+        opr = 0;
+        FirstValue = 0;
+        SecondValue = 0;
+        document.getElementById("result").value = "";
+        document.getElementById("equation").value = "";
+    }
+
+
+
+</script>
+
+<body>
+    <table id="calcu">
+        <tr>
+            <td colspan="3">
+                <input type="text" id="result" disabled>
+                <input type="text" id="equation" disabled>
+            </td>
+            <td><input class="cancel" type="button" value="c" onclick="reset()"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="7" onclick="display('7')"></td>
+            <td><input type="button" value="8" onclick="display('8')"></td>
+            <td><input type="button" value="9" onclick="display('9')"></td>
+            <td><input class="opr" type="button" value="+" onclick="operation('+')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" onclick="display('4')"></td>
+            <td><input type="button" value="5" onclick="display('5')"></td>
+            <td><input type="button" value="6" onclick="display('6')"></td>
+            <td><input class="opr" type="button" value="-" onclick="operation('-')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="1" onclick="display('1')"></td>
+            <td><input type="button" value="2" onclick="display('2')"></td>
+            <td><input type="button" value="3" onclick="display('3')"></td>
+            <td><input class="opr" type="button" value="÷" onclick="operation('/')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="." onclick="display('.')"></td>
+            <td><input type="button" value="0" onclick="display('0')"></td>
+            <td><input type="button" value="=" onclick="solve()"></td>
+            <td><input class="opr" type="button" value="*" onclick="operation('*')"></td>
+        </tr>
+    </table>
+</body>
+
+
+<style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    table {
+        border: 5px solid #212121;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    input[type="button"] {
+        width: 100%;
+        padding: 20px 40px;
+        background-color: #212121;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        border: none;
+        border-radius: 0px;
+    }
+
+    #result {
+        padding: 20px 30px;
+        font-size: 24px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+    }
+
+    #equation {
+        position: relative;
+        top: -20px;
+        right: 15px;
+        font-size: 15px;
+        padding: 0px;
+        border: none;
+    }
+
+    .opr {
+        background-color: #757575 !important;
+    }
+
+    .cancel {
+        background-color: #129688 !important;
+    }
+</style>
+
+</html>
